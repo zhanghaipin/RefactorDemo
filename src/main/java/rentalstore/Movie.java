@@ -24,4 +24,40 @@ public class Movie {
     public String getTitle() {
         return title;
     }
+
+
+    //Refactoring V2:move amountFor() method
+    public double amountFor(int rentalDay)
+    {
+        double thisAmount=0.0;
+        switch(getPriceCode())
+        {
+            case Movie.REGULAR:
+                thisAmount += 2;
+                if(rentalDay>2)
+                    thisAmount += (rentalDay-2)*1.5;
+                break;
+
+            case Movie.NEW_RELEASE:
+                thisAmount += rentalDay*3;
+                break;
+
+            case Movie.CHILDRENS:
+                thisAmount += 1.5;
+                if(rentalDay>3)
+                    thisAmount += (rentalDay-3)*1.5;
+                break;
+        }
+
+        return thisAmount;
+    }
+
+    //Extract calculate from Customer to Rental class
+    public int getFrequentRenterPoints(int rentalDay) {
+        if((getPriceCode()==Movie.NEW_RELEASE)&&rentalDay>1)
+        {
+            return 2;
+        }
+        return 1;
+    }
 }

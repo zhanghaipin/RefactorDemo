@@ -38,7 +38,7 @@ public class Customer {
             //frequentRenterPoints=each.getFrequentRenterPoints();
 
             //show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.amountFor()) + "\n";
+            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getMovie().amountFor(each.getDayRented())) + "\n";
             //totalAmount += each.amountFor();
         }
 
@@ -55,7 +55,7 @@ public class Customer {
         while(rentalss.hasMoreElements())
         {
             Rental each = (Rental) rentalss.nextElement();
-            points += each.getFrequentRenterPoints();
+            points += each.getMovie().getFrequentRenterPoints(each.getDayRented());
         }
 
         return points;
@@ -68,7 +68,7 @@ public class Customer {
         while(rentalss.hasMoreElements())
         {
             Rental each = (Rental) rentalss.nextElement();
-            result += each.amountFor();
+            result += each.getMovie().amountFor(each.getDayRented());
         }
         return result;
     }
