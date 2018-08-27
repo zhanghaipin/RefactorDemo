@@ -7,10 +7,13 @@
 请重构之前老板写的代码，让系统能用html的格式打出租赁小票详情。
 比如：
 ```
-<H1>Rentals for <EM>Jerry</EM></H1><P>
+<H1>Rentals for <EM>Harper</EM></H1>
+<P>
 Roman Holiday: 3.0<BR>
 Titanic: 3.0<BR>
-<P>You owe<EM>3.0</EM><P>
+<P>
+You owe<EM>3.0</EM>
+<P>
 On this rental you earned <EM>2</EM> frequent renter points<P>
 ```
 要求
