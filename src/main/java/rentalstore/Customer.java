@@ -25,14 +25,16 @@ public class Customer {
         Enumeration rentals = this.rentals.elements();
         String result = "Rental Record for " + getName() + "\n";
         while(rentals.hasMoreElements()){
-            double thisAmount =0;
             Rental each = (Rental) rentals.nextElement();
 
             //Refactoring V1:Extract Method replace switch case
             //thisAmount = amountFor(each);
 
             //Refactoring V2:move amountFor() method
-            thisAmount = each.amountFor(thisAmount);
+            //thisAmount = each.amountFor();
+
+            //Refactoring V3:Replace thisAmount with query method
+
             //add frequent renter points
             frequentRenterPoints ++;
             //add bonus for a two day new release rental
@@ -41,8 +43,8 @@ public class Customer {
             }
 
             //show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
-            totalAmount += thisAmount;
+            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.amountFor()) + "\n";
+            totalAmount += each.amountFor();
         }
 
         //add footer lines

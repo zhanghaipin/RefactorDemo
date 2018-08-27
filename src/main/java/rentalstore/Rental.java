@@ -18,8 +18,9 @@ public class Rental {
     }
 
     //Refactoring V2:move amountFor() method
-    public double amountFor(double thisAmount)
+    public double amountFor()
     {
+        double thisAmount=0.0;
         switch(getMovie().getPriceCode())
         {
             case Movie.REGULAR:
