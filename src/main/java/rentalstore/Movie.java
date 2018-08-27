@@ -26,7 +26,6 @@ public class Movie {
     }
 
 
-    //Refactoring V2:move amountFor() method
     public double amountFor(int rentalDay)
     {
         double thisAmount=0.0;
@@ -52,7 +51,6 @@ public class Movie {
         return thisAmount;
     }
 
-    //Extract calculate from Customer to Rental class
     public int getFrequentRenterPoints(int rentalDay) {
         if((getPriceCode()==Movie.NEW_RELEASE)&&rentalDay>1)
         {

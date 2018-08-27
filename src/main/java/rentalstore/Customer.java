@@ -24,22 +24,7 @@ public class Customer {
         String result = "Rental Record for " + getName() + "\n";
         while(rentals.hasMoreElements()){
             Rental each = (Rental) rentals.nextElement();
-
-            //Refactoring V1:Extract Method replace switch case
-            //thisAmount = amountFor(each);
-
-            //Refactoring V2:move amountFor() method
-            //thisAmount = each.amountFor();
-
-            //Refactoring V3:Replace thisAmount with query method
-
-            //add frequent renter points
-            //Refactoring V4:Extract calculate from Customer to Rental class
-            //frequentRenterPoints=each.getFrequentRenterPoints();
-
-            //show figures for this rental
             result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getMovie().amountFor(each.getDayRented())) + "\n";
-            //totalAmount += each.amountFor();
         }
 
         //add footer lines
@@ -48,7 +33,20 @@ public class Customer {
         return result;
     }
 
-    //replace temporary variable as method
+    public String htmlStatement() {
+        Enumeration rentals = this.rentals.elements();
+        String result = "<H1>Rentals for <EM>" + getName() + "</EM></H1><P>\n";
+        while (rentals.hasMoreElements()) {
+            Rental each = (Rental) rentals.nextElement();
+            result += each.getMovie().getTitle() + ": " + String.valueOf(each.getMovie().amountFor(each.getDayRented())) + "<BR>\n";
+        }
+        //add footer lines
+        result += "<P>You owe<EM>" + String.valueOf(getTotalCharge()) + "</EM><P>\n";
+        result += "On this rental you earned <EM>" + String.valueOf(getTotalFrequentRenterPoints()) +
+                "</EM> frequent renter points<P>";
+        return result;
+    }
+
     private int getTotalFrequentRenterPoints() {
         int points = 0;
         Enumeration rentalss = rentals.elements();
@@ -57,7 +55,6 @@ public class Customer {
             Rental each = (Rental) rentalss.nextElement();
             points += each.getMovie().getFrequentRenterPoints(each.getDayRented());
         }
-
         return points;
     }
 
