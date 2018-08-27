@@ -36,11 +36,8 @@ public class Customer {
             //Refactoring V3:Replace thisAmount with query method
 
             //add frequent renter points
-            frequentRenterPoints ++;
-            //add bonus for a two day new release rental
-            if((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDayRented() > 1){
-                frequentRenterPoints ++;
-            }
+            //Refactoring V4:Extract calculate from Customer to Rental class
+            frequentRenterPoints=each.getFrequentRenterPoints();
 
             //show figures for this rental
             result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.amountFor()) + "\n";
@@ -53,5 +50,4 @@ public class Customer {
         return result;
     }
 
-    //Extract Method replace switch case
 }

@@ -42,4 +42,13 @@ public class Rental {
 
         return thisAmount;
     }
+
+    //Extract calculate from Customer to Rental class
+    public int getFrequentRenterPoints() {
+        if((getMovie().getPriceCode()==Movie.NEW_RELEASE)&&getDayRented()>1)
+        {
+            return 2;
+        }
+        return 1;
+    }
 }
