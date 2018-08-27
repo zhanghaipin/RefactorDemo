@@ -28,9 +28,11 @@ public class Customer {
             double thisAmount =0;
             Rental each = (Rental) rentals.nextElement();
 
-            //Extract Method replace switch case
-            thisAmount = amountFor(each);
+            //Refactoring V1:Extract Method replace switch case
+            //thisAmount = amountFor(each);
 
+            //Refactoring V2:move amountFor() method
+            thisAmount = each.amountFor(thisAmount);
             //add frequent renter points
             frequentRenterPoints ++;
             //add bonus for a two day new release rental
@@ -50,28 +52,4 @@ public class Customer {
     }
 
     //Extract Method replace switch case
-    private double amountFor(Rental each)
-    {
-        double thisAmount = 0;
-        switch(each.getMovie().getPriceCode())
-        {
-            case Movie.REGULAR:
-                thisAmount += 2;
-                if(each.getDayRented()>2)
-                    thisAmount += (each.getDayRented()-2)*1.5;
-                break;
-
-            case Movie.NEW_RELEASE:
-                thisAmount += each.getDayRented()*3;
-                break;
-
-            case Movie.CHILDRENS:
-                thisAmount += 1.5;
-                if(each.getDayRented()>3)
-                    thisAmount += (each.getDayRented()-3)*1.5;
-                break;
-        }
-
-        return thisAmount;
-    }
 }
